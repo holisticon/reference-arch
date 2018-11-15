@@ -24,9 +24,6 @@ module.exports = function (config) {
     files: [
       {pattern: './src/test/frontend/setup.ts', watched: false}
     ],
-    preprocessors: {
-      './src/test/frontend/setup.ts': ['@angular-devkit/build-angular']
-    },
     coverageReporter: {
       type: 'in-memory'
     },
