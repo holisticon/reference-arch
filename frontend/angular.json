@@ -11,6 +11,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -22,7 +23,7 @@
             ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/primeng/resources/themes/omega/theme.css",
+              "node_modules/primeng/resources/themes/luna-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/scss/styles.scss"
             ],
@@ -30,6 +31,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -75,7 +82,7 @@
             "scripts": [],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/primeng/resources/themes/omega/theme.css",
+              "node_modules/primeng/resources/themes/luna-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/scss/styles.scss"
             ],
@@ -131,10 +138,13 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
