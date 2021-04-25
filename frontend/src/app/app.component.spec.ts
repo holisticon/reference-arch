@@ -1,19 +1,18 @@
-import { HttpClientModule } from '@angular/common/http';
-import { TestBed, async } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { ButtonModule } from 'primeng/button';
-import { ApplicationService } from './../../src-gen/api/application.service';
-import { AppComponent } from './app.component';
 import { SERVICE_MOCKS } from '../mocks';
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
 
   let fixture, component;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientModule,
+        HttpClientTestingModule,
         ButtonModule,
         LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.OFF}),
       ],
@@ -28,17 +27,13 @@ describe('AppComponent', () => {
     component = fixture.debugElement.componentInstance;
   }));
 
-  it('should create the app', async(() => {
+  it('should create the app', waitForAsync(() => {
     expect(component).toBeTruthy();
   }));
 
-  it(`should have as title 'app'`, async(() => {
-    expect(component.title).toEqual('app');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
+  it('should render title in a h1 tag', waitForAsync(() => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ReferenceArch!');
   }));
 });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApplicationService } from '../../src-gen';
+import { ApplicationService, Application } from '../../src-gen';
 import { NGXLogger } from 'ngx-logger';
 
 @Component({
@@ -8,13 +8,17 @@ import { NGXLogger } from 'ngx-logger';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
 
-  constructor(private serviceClient: ApplicationService,
-    private logger: NGXLogger) {
+  apps: Array<Application>;
 
-  }
+  constructor(
+    private serviceClient: ApplicationService,
+    private logger: NGXLogger
+  ) {}
   printApplications(): void {
-    this.serviceClient.getApplications('test').subscribe(apps => apps.forEach(app => this.logger.debug('Application:', app.name)));
+    this.serviceClient.getApplications('test').subscribe(apps => {
+      this.apps = apps;
+      apps.forEach(app => this.logger.debug('Application:', app.name));
+    });
   }
 }
