@@ -1,0 +1,24 @@
+
+keycloak:
+  auth-server-url: http://localhost:9090/auth
+  bearer-only: true
+  cors: false
+  principal-attribute: preferred_username
+  use-resource-role-mappings: true
+  realm: app
+  resource: backend
+  credentials:
+    secret: 'a86c53e8-4a23-41fa-bd29-9cbf724321f1'
+
+logging.level:
+  root: ERROR
+  org.hibernate: ERROR
+  org.springframework.web: INFO
+  org.springframework.security.ws: ERROR
+
+management:
+  endpoint:
+    health:
+      enabled: true
+  endpoints:
+    enabled-by-default: false

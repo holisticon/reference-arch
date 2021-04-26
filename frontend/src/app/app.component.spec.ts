@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
+import { KeycloakAngularModule } from 'keycloak-angular';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { ButtonModule } from 'primeng/button';
 import { SERVICE_MOCKS } from '../mocks';
@@ -13,6 +14,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
+        KeycloakAngularModule,
         ButtonModule,
         LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.OFF}),
       ],

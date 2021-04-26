@@ -1,10 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div style="text-align: center">
   <h1>Welcome to ReferenceArch!</h1>
   <img
     width="300"
     alt="holisticon Logo"
-    src="https://holisticon.de/assets/img/holisticon-main-logo.png"
+    src="https://www.holisticon.de/wp-content/themes/hlcw/img/holisticon-main-logo@2x.png"
   />
 </div>
 <h2>Here are some links to help you start:</h2>
@@ -26,16 +26,18 @@
       >
     </h2>
   </li>
-  <li>
-    <p-button
-      label="Print Applications"
-      (onClick)="printApplications()"
-    ></p-button>
+  <li *ngIf="isLoggedIn">
+    <p-button label="Print Applications" (onClick)="printApplications()">
+    </p-button>
+    <div>
+      <span *ngFor="let app of apps">
+        {{ app.name }} ({{ app.applicationId }})
+      </span>
+      <p *ngIf="!apps || apps.length === 0">No Applications found...</p>
+    </div>
   </li>
-  <div>
-    <span *ngFor="let app of apps">
-      {{ app.name }} ({{ app.applicationId }})
-    </span>
-    <p *ngIf="!apps || apps.length === 0">No Applications found...</p>
-  </div>
+  <li>
+    <p-button label="Login" (onClick)="login()" *ngIf="!isLoggedIn"></p-button>
+    <p-button label="Logout" (onClick)="logout()" *ngIf="isLoggedIn"></p-button>
+  </li>
 </ul>

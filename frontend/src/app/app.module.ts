@@ -1,28 +1,45 @@
-import { BASE_PATH as backendUrl } from './../../src-gen/variables';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-// PrimeFaces Modules
-import { ButtonModule } from 'primeng/button';
+import { HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { KeycloakAngularModule, KeycloakService } from "keycloak-angular";
 // Logger
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
+// PrimeFaces Modules
+import { ButtonModule } from "primeng/button";
+import { ApiModule } from "../../src-gen";
+import { environment } from "../environments/environment";
+import { BASE_PATH as backendUrl } from "./../../src-gen/variables";
 // Our Modules
-import { AppComponent } from './app.component';
-import { ApiModule } from '../../src-gen';
+import { AppComponent } from "./app.component";
 
-
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: environment.authentication.keycloak.config,
+    });
+}
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    KeycloakAngularModule,
     ButtonModule,
-    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.OFF}),
+    LoggerModule.forRoot({
+      level: NgxLoggerLevel.DEBUG,
+      serverLogLevel: NgxLoggerLevel.OFF,
+    }),
     ApiModule,
   ],
   providers: [
-    { provide: backendUrl, useValue: 'http://localhost:8080' },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
+    { provide: backendUrl, useValue: "http://localhost:8080" },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

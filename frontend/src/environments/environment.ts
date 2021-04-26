@@ -4,5 +4,14 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  authentication: {
+      keycloak: {
+          config: {
+              url: 'http://localhost:9090/auth',
+              realm: 'app',
+              clientId: 'frontend'
+          }
+      }
+  }
 };

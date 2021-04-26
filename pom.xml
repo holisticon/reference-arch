@@ -15,6 +15,7 @@
     <springboot.version>2.0.1.RELEASE</springboot.version>
     <springcloud.version>Finchley.M5</springcloud.version>
     <springfox-swagger2.version>2.8.0</springfox-swagger2.version>
+    <keycloak.version>12.0.4</keycloak.version>
     <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
     <skipITests>true</skipITests>
     <pattern.package.itest>**/itest/*.java</pattern.package.itest>
@@ -68,6 +69,16 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <!-- Keycloak -->
+      <dependency>
+        <groupId>org.keycloak.bom</groupId>
+        <artifactId>keycloak-adapter-bom</artifactId>
+        <version>${keycloak.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
 
       <!-- Kotlin -->
       <dependency>
