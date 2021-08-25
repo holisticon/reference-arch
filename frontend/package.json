@@ -25,7 +25,7 @@
     "core-js": "^2.5.7",
     "font-awesome": "^4.7.0",
     "ngx-logger": "^3.3.6",
-    "primeng": "5.2.0",
+    "primeng": "5.2.7",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
