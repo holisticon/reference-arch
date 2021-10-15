@@ -4,12 +4,14 @@
     "outDir": "../out-tsc/spec",
     "baseUrl": "./",
     "types": [
-      "jasmine",
-      "node"
-    ]
+      "node",
+      "jest"
+    ],
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "allowJs": true
   },
   "files": [
-    "test.ts",
     "polyfills.ts"
   ],
   "include": [
